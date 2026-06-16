@@ -226,81 +226,106 @@ export default function Index() {
     <div className="min-h-screen bg-background text-foreground font-sans overflow-x-hidden">
 
       {/* ── TOP BAR ───────────────────────────────────────────── */}
-      <div className="bg-[hsl(var(--navy))] text-white text-xs py-2 px-6 text-center">
-        <span className="opacity-80">Акция до конца недели — </span>
-        <strong>скидка 20% на перетяжку 2 предметов и более.</strong>
-        <span className="opacity-80"> Осталось: </span>
-        <Countdown />
+      <div className="bg-[hsl(var(--navy))] text-white text-xs py-2 px-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-center">
+        <span><span className="opacity-70">Акция: </span><strong>скидка 20% на 2 предмета и более</strong></span>
+        <span className="opacity-40 hidden sm:inline">|</span>
+        <span className="flex items-center gap-1.5">
+          <span className="opacity-70">Осталось:</span>
+          <Countdown />
+        </span>
+        <span className="opacity-40 hidden sm:inline">|</span>
+        <a href="tel:+79857113332" className="font-bold text-white hover:text-[hsl(var(--copper-light))] transition-colors">
+          +7 (985) 711-33-32
+        </a>
       </div>
 
       {/* ── HEADER ────────────────────────────────────────────── */}
-      <header className="sticky top-0 z-50 bg-white/98 backdrop-blur-md border-b border-border shadow-sm">
-        <div className="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between gap-4" style={{ height: '72px' }}>
+      <header className="sticky top-0 z-50 bg-white shadow-md border-b border-border">
+
+        {/* Верхняя строка — логотип + мастер + телефон */}
+        <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between gap-6 border-b border-border/60">
 
           {/* Логотип */}
           <div className="flex items-center gap-3 shrink-0">
-            <div className="w-8 h-8 copper-gradient rounded flex items-center justify-center">
-              <Icon name="Sofa" size={16} className="text-white" />
+            <div className="w-10 h-10 copper-gradient rounded-xl flex items-center justify-center shadow">
+              <Icon name="Sofa" size={20} className="text-white" />
             </div>
             <div>
-              <div className="font-black text-sm leading-tight tracking-tight">АТЕЛЬЕ МЕБЕЛИ</div>
-              <div className="text-[10px] text-muted-foreground tracking-wider uppercase">Москва · С 2013 года</div>
+              <div className="font-black text-base leading-tight tracking-tight text-[hsl(var(--navy))]">
+                obivka-divan.ru
+              </div>
+              <div className="text-[10px] text-muted-foreground tracking-wider uppercase">Перетяжка мебели · Москва · С 2013</div>
             </div>
           </div>
 
-          {/* Фото мастера — центр шапки */}
-          <div className="hidden lg:flex items-center gap-4 bg-[hsl(var(--cream))] border border-border rounded-xl px-4 py-2">
+          {/* Баннер с мастером */}
+          <div className="hidden lg:flex items-stretch gap-0 rounded-2xl overflow-hidden border border-[hsl(var(--copper))]/30 shadow-md bg-gradient-to-r from-[hsl(var(--cream))] to-white shrink-0">
             <img
               src={IMG.master}
-              alt="Мастер за работой"
-              className="w-10 h-10 rounded-lg object-cover object-top shrink-0"
+              alt="Мастер Александр"
+              className="w-20 h-16 object-cover object-top"
             />
-            <div>
-              <div className="font-bold text-sm leading-tight">Александр — старший мастер</div>
-              <div className="text-xs text-muted-foreground">12 лет опыта · более 2 000 работ</div>
+            <div className="flex flex-col justify-center px-4 py-2 gap-0.5">
+              <div className="flex gap-0.5 mb-1">
+                {[...Array(5)].map((_, i) => <Icon key={i} name="Star" size={12} className="text-yellow-400 fill-yellow-400" />)}
+              </div>
+              <div className="font-black text-sm text-[hsl(var(--navy))] leading-tight">Александр — старший мастер</div>
+              <div className="text-xs text-muted-foreground">12 лет опыта · 2 000+ работ · гарантия 3 года</div>
             </div>
-            <div className="flex gap-0.5">
-              {[...Array(5)].map((_, i) => <Icon key={i} name="Star" size={11} className="text-yellow-400 fill-yellow-400" />)}
+            <div className="flex items-center px-4 bg-[hsl(var(--copper))]/8 border-l border-[hsl(var(--copper))]/20">
+              <div className="text-center">
+                <div className="text-xl font-black text-[hsl(var(--copper))]">4.97</div>
+                <div className="text-[10px] text-muted-foreground leading-tight">Яндекс<br/>Карты</div>
+              </div>
             </div>
           </div>
 
-          <nav className="hidden lg:flex items-center gap-6">
+          {/* Телефон + кнопка */}
+          <div className="hidden lg:flex items-center gap-3 shrink-0">
+            <div className="text-right">
+              <a href="tel:+79857113332" className="font-black text-xl text-[hsl(var(--navy))] hover:text-[hsl(var(--copper))] transition-colors tracking-tight">
+                +7 (985) 711-33-32
+              </a>
+              <div className="text-[10px] text-muted-foreground">Ежедневно с 8:00 до 21:00</div>
+            </div>
+            <Button className="btn-copper px-5 h-10 text-sm rounded-xl font-bold shadow">
+              Бесплатный замер
+            </Button>
+          </div>
+
+          <button className="lg:hidden p-1" onClick={() => setMenuOpen(!menuOpen)}>
+            <Icon name={menuOpen ? 'X' : 'Menu'} size={24} />
+          </button>
+        </div>
+
+        {/* Навигация */}
+        <div className="hidden lg:block max-w-7xl mx-auto px-6">
+          <nav className="flex items-center gap-7 h-10">
             {NAV.map((n) => (
               <a key={n} href={`#${n.toLowerCase()}`}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                className="text-sm font-semibold text-muted-foreground hover:text-[hsl(var(--copper))] transition-colors">
                 {n}
               </a>
             ))}
           </nav>
-
-          <div className="hidden lg:flex items-center gap-3 shrink-0">
-            <div className="text-right">
-              <a href="tel:+74950000000" className="font-black text-base hover:text-[hsl(var(--copper))] transition-colors">
-                +7 (495) 000-00-00
-              </a>
-              <div className="text-[10px] text-muted-foreground">Ежедневно с 8:00 до 21:00</div>
-            </div>
-            <Button className="btn-copper px-5 h-9 text-sm rounded-md">Бесплатный замер</Button>
-          </div>
-
-          <button className="lg:hidden p-1" onClick={() => setMenuOpen(!menuOpen)}>
-            <Icon name={menuOpen ? 'X' : 'Menu'} size={22} />
-          </button>
         </div>
 
         {menuOpen && (
           <div className="lg:hidden border-t border-border bg-white px-6 py-5 flex flex-col gap-4">
-            {/* Фото мастера в мобильном меню */}
-            <div className="flex items-center gap-3 bg-[hsl(var(--cream))] rounded-xl p-3">
-              <img src={IMG.master} alt="Мастер" className="w-12 h-12 rounded-lg object-cover object-top" />
+            {/* Мастер в мобильном */}
+            <div className="flex items-center gap-3 bg-[hsl(var(--cream))] rounded-2xl p-3 border border-border">
+              <img src={IMG.master} alt="Мастер" className="w-14 h-14 rounded-xl object-cover object-top shrink-0" />
               <div>
+                <div className="flex gap-0.5 mb-1">
+                  {[...Array(5)].map((_, i) => <Icon key={i} name="Star" size={11} className="text-yellow-400 fill-yellow-400" />)}
+                </div>
                 <div className="font-bold text-sm">Александр — старший мастер</div>
                 <div className="text-xs text-muted-foreground">12 лет опыта · 2 000+ работ</div>
               </div>
             </div>
-            {NAV.map((n) => <a key={n} href={`#${n.toLowerCase()}`} className="font-medium py-1">{n}</a>)}
-            <a href="tel:+74950000000" className="font-black text-lg">+7 (495) 000-00-00</a>
-            <Button className="btn-copper">Бесплатный замер</Button>
+            {NAV.map((n) => <a key={n} href={`#${n.toLowerCase()}`} className="font-semibold py-1">{n}</a>)}
+            <a href="tel:+79857113332" className="font-black text-xl text-[hsl(var(--navy))]">+7 (985) 711-33-32</a>
+            <Button className="btn-copper h-11 font-bold rounded-xl">Бесплатный замер</Button>
           </div>
         )}
       </header>
@@ -804,7 +829,7 @@ export default function Index() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto text-white/60 text-sm">
             <div className="text-center">
               <Icon name="Phone" size={20} className="mx-auto mb-2 text-[hsl(var(--copper-light))]" />
-              <div className="font-bold text-white">+7 (495) 000-00-00</div>
+              <div className="font-bold text-white">+7 (985) 711-33-32</div>
               <div>Ежедневно 8–21</div>
             </div>
             <div className="text-center">
@@ -833,7 +858,7 @@ export default function Index() {
             <div className="w-6 h-6 copper-gradient rounded flex items-center justify-center">
               <Icon name="Sofa" size={12} className="text-white" />
             </div>
-            <span className="font-black text-white text-sm">АТЕЛЬЕ МЕБЕЛИ</span>
+            <span className="font-black text-white text-sm">obivka-divan.ru</span>
           </div>
           <div className="flex flex-wrap gap-5 justify-center">
             {NAV.map((n) => <a key={n} href="#" className="hover:text-white/80 transition-colors">{n}</a>)}
