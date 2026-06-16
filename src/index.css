@@ -13,44 +13,44 @@
     --popover: 0 0% 100%;
     --popover-foreground: 220 20% 10%;
 
-    /* Акцентный — тёплый терракотовый/медный */
-    --primary: 18 85% 48%;
+    /* Акцентный — стальной синий */
+    --primary: 210 80% 44%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 15% 95%;
-    --secondary-foreground: 220 20% 10%;
+    --secondary: 210 20% 95%;
+    --secondary-foreground: 215 25% 12%;
 
-    --muted: 220 10% 94%;
-    --muted-foreground: 220 10% 50%;
+    --muted: 210 15% 94%;
+    --muted-foreground: 215 12% 48%;
 
-    --accent: 18 85% 48%;
+    --accent: 210 80% 44%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 70% 45%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 12% 88%;
-    --input: 220 12% 88%;
-    --ring: 18 85% 48%;
+    --border: 215 18% 87%;
+    --input: 215 18% 87%;
+    --ring: 210 80% 44%;
 
-    /* Кастомные */
-    --copper: 18 85% 48%;
-    --copper-light: 18 75% 62%;
-    --copper-dark: 18 90% 36%;
-    --navy: 220 35% 14%;
-    --navy-light: 220 25% 22%;
-    --cream: 40 30% 96%;
+    /* Кастомные — синяя/стальная палитра */
+    --copper: 210 80% 44%;
+    --copper-light: 210 70% 58%;
+    --copper-dark: 215 85% 32%;
+    --navy: 218 45% 13%;
+    --navy-light: 218 35% 22%;
+    --cream: 210 25% 97%;
 
     --radius: 0.375rem;
 
     --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 220 10% 20%;
-    --sidebar-primary: 18 85% 48%;
+    --sidebar-foreground: 215 12% 20%;
+    --sidebar-primary: 210 80% 44%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 10% 94%;
-    --sidebar-accent-foreground: 220 20% 10%;
-    --sidebar-border: 220 12% 88%;
-    --sidebar-ring: 18 85% 48%;
+    --sidebar-accent: 210 15% 94%;
+    --sidebar-accent-foreground: 215 25% 12%;
+    --sidebar-border: 215 18% 87%;
+    --sidebar-ring: 210 80% 44%;
   }
 }
 

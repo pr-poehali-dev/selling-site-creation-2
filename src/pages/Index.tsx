@@ -5,6 +5,7 @@ import BeforeAfter from '@/components/BeforeAfter';
 
 /* ─── Медиа ─────────────────────────────────────────────────────── */
 const IMG = {
+  master:   'https://cdn.poehali.dev/projects/a6b6548c-f8c6-4f50-8c97-bb3d302d5d54/files/99df6230-a51a-4397-bd5e-51b89e7a983a.jpg',
   hero:     'https://cdn.poehali.dev/projects/a6b6548c-f8c6-4f50-8c97-bb3d302d5d54/files/a002abb7-69e0-4304-9eb5-382e0eef6f0e.jpg',
   result:   'https://cdn.poehali.dev/projects/a6b6548c-f8c6-4f50-8c97-bb3d302d5d54/files/8e155660-70c1-438f-b8f3-31c913f9be29.jpg',
   fabrics:  'https://cdn.poehali.dev/projects/a6b6548c-f8c6-4f50-8c97-bb3d302d5d54/files/4d4102a5-a98e-4fa9-984b-f3e664a1926e.jpg',
@@ -234,14 +235,32 @@ export default function Index() {
 
       {/* ── HEADER ────────────────────────────────────────────── */}
       <header className="sticky top-0 z-50 bg-white/98 backdrop-blur-md border-b border-border shadow-sm">
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
+        <div className="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between gap-4" style={{ height: '72px' }}>
+
+          {/* Логотип */}
+          <div className="flex items-center gap-3 shrink-0">
             <div className="w-8 h-8 copper-gradient rounded flex items-center justify-center">
               <Icon name="Sofa" size={16} className="text-white" />
             </div>
             <div>
               <div className="font-black text-sm leading-tight tracking-tight">АТЕЛЬЕ МЕБЕЛИ</div>
               <div className="text-[10px] text-muted-foreground tracking-wider uppercase">Москва · С 2013 года</div>
+            </div>
+          </div>
+
+          {/* Фото мастера — центр шапки */}
+          <div className="hidden lg:flex items-center gap-4 bg-[hsl(var(--cream))] border border-border rounded-xl px-4 py-2">
+            <img
+              src={IMG.master}
+              alt="Мастер за работой"
+              className="w-10 h-10 rounded-lg object-cover object-top shrink-0"
+            />
+            <div>
+              <div className="font-bold text-sm leading-tight">Александр — старший мастер</div>
+              <div className="text-xs text-muted-foreground">12 лет опыта · более 2 000 работ</div>
+            </div>
+            <div className="flex gap-0.5">
+              {[...Array(5)].map((_, i) => <Icon key={i} name="Star" size={11} className="text-yellow-400 fill-yellow-400" />)}
             </div>
           </div>
 
@@ -254,7 +273,7 @@ export default function Index() {
             ))}
           </nav>
 
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-3 shrink-0">
             <div className="text-right">
               <a href="tel:+74950000000" className="font-black text-base hover:text-[hsl(var(--copper))] transition-colors">
                 +7 (495) 000-00-00
@@ -271,6 +290,14 @@ export default function Index() {
 
         {menuOpen && (
           <div className="lg:hidden border-t border-border bg-white px-6 py-5 flex flex-col gap-4">
+            {/* Фото мастера в мобильном меню */}
+            <div className="flex items-center gap-3 bg-[hsl(var(--cream))] rounded-xl p-3">
+              <img src={IMG.master} alt="Мастер" className="w-12 h-12 rounded-lg object-cover object-top" />
+              <div>
+                <div className="font-bold text-sm">Александр — старший мастер</div>
+                <div className="text-xs text-muted-foreground">12 лет опыта · 2 000+ работ</div>
+              </div>
+            </div>
             {NAV.map((n) => <a key={n} href={`#${n.toLowerCase()}`} className="font-medium py-1">{n}</a>)}
             <a href="tel:+74950000000" className="font-black text-lg">+7 (495) 000-00-00</a>
             <Button className="btn-copper">Бесплатный замер</Button>
