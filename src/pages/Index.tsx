@@ -87,8 +87,8 @@ const Index = () => {
 
       {/* Hero */}
       <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
-        <img src={IMG.hero} alt="" className="absolute inset-0 w-full h-full object-cover opacity-40" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent" />
+        <img src={IMG.hero} alt="" className="absolute inset-0 w-full h-full object-cover opacity-25" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/40" />
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-2xl animate-fade-up">
             <div className="inline-flex items-center gap-2 border border-gold/40 px-4 py-1.5 mb-6">
