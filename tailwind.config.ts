@@ -20,8 +20,8 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				display: ['Cormorant', 'serif'],
-				sans: ['Golos Text', 'sans-serif'],
+				display: ['Playfair Display', 'serif'],
+				sans: ['Montserrat', 'sans-serif'],
 			},
 			colors: {
 				gold: 'hsl(var(--gold))',

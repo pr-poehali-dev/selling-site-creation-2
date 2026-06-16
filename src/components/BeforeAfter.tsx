@@ -22,7 +22,7 @@ const BeforeAfter = ({ before, after, label }: BeforeAfterProps) => {
   return (
     <div
       ref={ref}
-      className="relative w-full aspect-[4/3] overflow-hidden rounded-sm border border-gold/30 select-none cursor-ew-resize group"
+      className="relative w-full aspect-[4/3] overflow-hidden border border-border select-none cursor-ew-resize group"
       onMouseMove={(e) => dragging.current && move(e.clientX)}
       onMouseDown={(e) => { dragging.current = true; move(e.clientX); }}
       onMouseUp={() => (dragging.current = false)}
