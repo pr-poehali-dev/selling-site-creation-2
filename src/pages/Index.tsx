@@ -33,8 +33,30 @@ const reviews = [
   { name: 'Анна К.', text: 'Подобрали ткань точно под мой интерьер. Сервис на уровне люксового ателье.', role: 'Санкт-Петербург' },
 ];
 
+const benefits = [
+  { icon: 'BadgePercent', title: 'Экономия до 70%', desc: 'Перетяжка обходится в разы дешевле покупки новой мебели того же класса.' },
+  { icon: 'FileSignature', title: 'Цена в договоре', desc: 'Фиксируем стоимость письменно — никаких доплат в процессе работы.' },
+  { icon: 'ShieldCheck', title: 'Гарантия 3 года', desc: 'Отвечаем за каждый шов. Бесплатно устраним любые недочёты.' },
+  { icon: 'Clock', title: 'Срок от 2 дней', desc: 'Заберём, перетянем и вернём мебель быстро и аккуратно.' },
+];
+
+const steps = [
+  { n: '01', title: 'Заявка и замер', desc: 'Оставляете заявку — мастер бесплатно приезжает на замер.' },
+  { n: '02', title: 'Выбор ткани', desc: 'Подбираем материал под интерьер и фиксируем цену в договоре.' },
+  { n: '03', title: 'Перетяжка', desc: 'Реставрируем каркас и обиваем мебель премиальной тканью.' },
+  { n: '04', title: 'Доставка', desc: 'Возвращаем мебель как новую — с гарантией 3 года.' },
+];
+
+const faq = [
+  { q: 'Сколько стоит перетяжка дивана?', a: 'От 18 000 ₽ за прямой диван. Точную цену назовём после бесплатного замера и зафиксируем в договоре.' },
+  { q: 'Как быстро вы выполняете работу?', a: 'В среднем 2–4 дня в зависимости от сложности. Срочные заказы делаем за 1 день.' },
+  { q: 'Даёте ли вы гарантию?', a: 'Да, гарантия 3 года на все виды работ. Любые недочёты устраняем бесплатно.' },
+  { q: 'Можно ли перетянуть мебель на дому?', a: 'Да, несложные работы выполняем у вас дома. Крупные заказы забираем на производство бесплатно.' },
+];
+
 const Index = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   return (
     <div className="min-h-screen bg-background text-foreground bg-grain">
@@ -69,29 +91,61 @@ const Index = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent" />
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-2xl animate-fade-up">
-            <p className="text-gold tracking-[0.4em] uppercase text-xs mb-6">Премиальное ателье мебели</p>
+            <div className="inline-flex items-center gap-2 border border-gold/40 px-4 py-1.5 mb-6">
+              <span className="w-2 h-2 rounded-full bg-gold animate-pulse" />
+              <span className="text-gold tracking-[0.2em] uppercase text-xs">Скидка 20% до конца месяца</span>
+            </div>
             <h1 className="font-display text-5xl md:text-7xl leading-[1.05] mb-6">
-              Возвращаем мебели <span className="text-gradient-gold italic">роскошь</span> и характер
+              Перетяжка мебели <span className="text-gradient-gold italic">за 2 дня</span> — выгоднее, чем покупать новую
             </h1>
-            <p className="text-muted-foreground text-lg mb-10 max-w-lg">
-              Перетяжка, реставрация и индивидуальный дизайн мебели премиум-класса. Ручная работа, благородные материалы, безупречный результат.
+            <p className="text-muted-foreground text-lg mb-8 max-w-lg">
+              Вернём вашему дивану роскошный вид и сэкономим до 70% против цены новой мебели. Бесплатный замер, договор, гарантия 3 года.
             </p>
+            <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-5 mb-8">
+              {['Бесплатный замер и расчёт', 'Фиксированная цена в договоре', 'Гарантия 3 года'].map((b) => (
+                <div key={b} className="flex items-center gap-2 text-sm text-foreground/90">
+                  <Icon name="Check" size={16} className="text-gold" /> {b}
+                </div>
+              ))}
+            </div>
             <div className="flex flex-wrap gap-4">
               <Button size="lg" className="bg-gold text-primary-foreground hover:bg-gold-soft rounded-none tracking-wider px-8">
-                Рассчитать стоимость
+                Узнать цену за 1 минуту
               </Button>
               <Button size="lg" variant="outline" className="border-gold/40 text-foreground hover:bg-gold/10 rounded-none tracking-wider px-8">
                 Наши работы
               </Button>
             </div>
-            <div className="flex gap-10 mt-14">
-              {[['12', 'лет опыта'], ['3 500+', 'проектов'], ['5.0', 'рейтинг']].map(([n, l]) => (
+            <p className="text-muted-foreground text-xs mt-4">Сегодня уже 12 заявок · Перезваниваем в течение 15 минут</p>
+            <div className="flex gap-10 mt-12">
+              {[['12', 'лет опыта'], ['3 500+', 'проектов'], ['5.0', 'рейтинг ⭐']].map(([n, l]) => (
                 <div key={l}>
                   <div className="font-display text-3xl text-gold">{n}</div>
                   <div className="text-muted-foreground text-xs uppercase tracking-wider">{l}</div>
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits */}
+      <section className="py-24 border-b border-border">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <p className="text-gold tracking-[0.4em] uppercase text-xs mb-4">Почему выбирают нас</p>
+            <h2 className="font-display text-4xl md:text-5xl">Выгодно, надёжно, с гарантией</h2>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {benefits.map((b) => (
+              <div key={b.title} className="text-center p-8 border border-border hover:border-gold/50 transition-colors group">
+                <div className="w-16 h-16 mx-auto flex items-center justify-center border border-gold/40 rounded-full mb-6 group-hover:bg-gold/10 transition-colors">
+                  <Icon name={b.icon} size={28} className="text-gold" />
+                </div>
+                <h3 className="font-display text-2xl mb-3">{b.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{b.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -128,6 +182,41 @@ const Index = () => {
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             <BeforeAfter before={IMG.before} after={IMG.after} label="Кресло «Винтаж»" />
             <BeforeAfter before={IMG.before} after={IMG.hero} label="Диван «Изумруд»" />
+          </div>
+        </div>
+      </section>
+
+      {/* Steps */}
+      <section className="py-28">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <p className="text-gold tracking-[0.4em] uppercase text-xs mb-4">Как мы работаем</p>
+            <h2 className="font-display text-4xl md:text-5xl">4 простых шага</h2>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {steps.map((s) => (
+              <div key={s.n} className="relative">
+                <div className="font-display text-6xl text-gold/30 mb-4">{s.n}</div>
+                <h3 className="font-display text-2xl mb-3">{s.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{s.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Promo banner */}
+      <section className="py-16">
+        <div className="container mx-auto px-6">
+          <div className="border border-gold/40 bg-gold/5 p-10 md:p-14 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
+            <div>
+              <p className="text-gold tracking-[0.3em] uppercase text-xs mb-3">Акция месяца</p>
+              <h3 className="font-display text-3xl md:text-4xl mb-2">Перетяжка от 2 диванов — скидка 20%</h3>
+              <p className="text-muted-foreground">А ещё бесплатный замер и подушка-валик в подарок к каждому заказу.</p>
+            </div>
+            <Button size="lg" className="bg-gold text-primary-foreground hover:bg-gold-soft rounded-none tracking-wider px-10 whitespace-nowrap">
+              Забрать скидку
+            </Button>
           </div>
         </div>
       </section>
@@ -192,6 +281,31 @@ const Index = () => {
                 </Button>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-28 bg-card/50">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <p className="text-gold tracking-[0.4em] uppercase text-xs mb-4">Вопросы и ответы</p>
+            <h2 className="font-display text-4xl md:text-5xl">Частые вопросы</h2>
+          </div>
+          <div className="max-w-3xl mx-auto space-y-4">
+            {faq.map((f, i) => (
+              <button
+                key={f.q}
+                onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                className="w-full text-left border border-border hover:border-gold/40 transition-colors p-6"
+              >
+                <div className="flex items-center justify-between gap-4">
+                  <span className="font-display text-xl">{f.q}</span>
+                  <Icon name={openFaq === i ? 'Minus' : 'Plus'} size={20} className="text-gold shrink-0" />
+                </div>
+                {openFaq === i && <p className="text-muted-foreground mt-4 leading-relaxed animate-fade-up">{f.a}</p>}
+              </button>
+            ))}
           </div>
         </div>
       </section>
